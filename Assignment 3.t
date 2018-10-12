@@ -73,6 +73,7 @@ var markamount : string
 var sum : int
 var total : int
 var x : int
+var xprev : int
 var y : int
 var yr : int
 var z : int
@@ -80,6 +81,7 @@ var exitnum : int
 total := 0
 sum := 0
 x := 1
+xprev := 0
 y := 1
 yr := 1
 z := 0
@@ -101,6 +103,10 @@ loop
 	if strintok (student) = true and strint (student) = exitnum then
 	    exit
 	    % Main feature - entering marks.
+	elsif x > 1 and strint (student) = marks (xprev, 1) then
+	    put student, " was already entered. Try again."
+	    student := intstr (0)
+	    exit
 	elsif strintok (student) = true and length (student) = 7 and strint (student) > 0 then
 	    loop
 		marks (x, 1) := strint (student)
@@ -150,6 +156,7 @@ loop
 		% Resetting variables for use later
 		sum := 0
 		x := x + 1
+		xprev := xprev + 1
 		y := yr
 		total := total + 1
 		clearScreen
